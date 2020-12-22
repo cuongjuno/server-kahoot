@@ -1,17 +1,16 @@
 const connectSocket = () => {
   var http = require("http"),
     socketIO = require("socket.io"),
-    port = process.env.PORT || 5000,
-    ip = process.env.IP,
-    server = http.createServer().listen(port, ip, function () {
-      console.log("Socket.IO server started at %s:%s!", ip, port);
+    port = 3000,
+    // ip = process.env.IP || "127.0.0.1",
+    server = http.createServer().listen(port, function () {
+      console.log("Socket.IO server started at port %s!", port);
     }),
     io = socketIO.listen(server);
   io.set("match origin protocol", true);
   io.set("origins", "*:*");
 
   io.on("connection", function (socket) {
-
     socket.on("host-join", (data) => {
       socket.join(data.pin);
     });
@@ -25,8 +24,6 @@ const connectSocket = () => {
         .to(`${data.pin}`)
         .emit("room-joined", { name: data.nickName, id: socket.id });
     });
-
-
 
     socket.on("question-over", (data) => {
       socket.to(`${data}`).emit("question-over");
@@ -43,7 +40,7 @@ const connectSocket = () => {
     });
 
     socket.on("sent-info", (data) => {
-      console.log("dapan dung" + data.answeredCorrect)
+      console.log("dapan dung" + data.answeredCorrect);
       io.to(data.id).emit("sent-info", {
         answeredCorrect: data.answeredCorrect,
         score: data.score,
