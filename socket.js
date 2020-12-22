@@ -2,7 +2,7 @@ const connectSocket = () => {
   var http = require("http"),
     socketIO = require("socket.io"),
     port = process.env.PORT || 5000,
-    ip = process.env.IP || "127.0.0.1",
+    ip = process.env.IP || "https://kahoott.herokuapp.com",
     server = http.createServer().listen(port, ip, function () {
       console.log("Socket.IO server started at %s:%s!", ip, port);
     }),
