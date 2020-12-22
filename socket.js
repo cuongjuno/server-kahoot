@@ -8,7 +8,8 @@ const connectSocket = () => {
     }),
     io = socketIO.listen(server);
   io.set("match origin protocol", true);
-  io.set("origins", "*:*");
+  // io.set("origins", "*:*");
+  io.set("origins", "*");
 
   io.on("connection", function (socket) {
     socket.on("host-join", (data) => {
