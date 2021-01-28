@@ -22,8 +22,8 @@ const UserSchema = new Schema({
     required: true,
     default: 'user'
   },
-  age: {
-    type: Number,
+  dob: {
+    type: String,
     required: true
   },
   avatar: {
@@ -33,7 +33,7 @@ const UserSchema = new Schema({
   questions: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Question'
+      ref: 'Kahoot'
     }],
   favorite: {
     type: String

@@ -11,7 +11,7 @@ const signup = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
   let user;
-  const { username, email, password, age } = req.body;
+  const { username, email, password, dob } = req.body;
   try
   {
     user = await User.findOne({ email });
@@ -25,7 +25,7 @@ const signup = async (req, res) => {
   }
   const hashPassword = await bcryptjs.hash(password, 10);
   user = new User({
-    username, email, age,
+    username, email, dob,
     password: hashPassword
   });
   let savedUser;

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const connectDB = () => {
   const URI =
-    "mongodb+srv://kahoot:kahoot@cluster0.q1jte.mongodb.net/kahoot?retryWrites=true&w=majority";
+      'mongodb+srv://cuongjuno:13082000aA_@cluster0.voxjn.mongodb.net/Kahoot?retryWrites=true&w=majority';
   mongoose.connect(
     URI,
     {

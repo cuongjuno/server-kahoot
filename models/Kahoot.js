@@ -16,18 +16,16 @@ const KahootSchema = new Schema({
   },
   description: {
     type: String,
-    required: true
   },
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  listQuestion: [
+  listQuestion:
     {
-      type: Schema.Types.ObjectId,
-      ref: 'Question'
+      type: [Object],
+      require: true
     }
-  ]
 }, { timestamps: true });
 
 const Kahoot = mongoose.model('Kahoot', KahootSchema);

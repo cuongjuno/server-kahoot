@@ -1,6 +1,10 @@
 const express = require('express');
 const { check } = require('express-validator');
-const { createQuestion, getQuestions, getQuestionById } = require('../handlers/question');
+const {
+    createQuestion,
+    getQuestions,
+    getQuestionById,
+} = require('../handlers/question');
 const router = express.Router();
 const { authMiddleware } = require('../middlewares/authMiddleware');
 
@@ -9,17 +13,26 @@ const { authMiddleware } = require('../middlewares/authMiddleware');
   @desc create a question
   @access Private
 */
-router.post('/', [authMiddleware,
-  [
-    check('title', 'Title must not be empty').not().isEmpty(),
-    check('answers', 'Answer list must not be empty').isArray({ min: 1 }),
-    check('correctText', 'Correct answer text must be provide').notEmpty(),
-    check('correctPosition', 'Correct answer position text must be valid').isInt({ min: 0 }),
-    check('time', 'Time must be valid').not().isEmpty(),
-    check('point', 'Point must be valid').not().isEmpty(),
-    check('image', 'Image must be valid').not().isEmpty(),
-  ]
-], createQuestion);
+router.post(
+    '/',
+    [
+        authMiddleware,
+        [
+            check('title', 'Title must not be empty').not().isEmpty(),
+            check('answers', 'Answer list must not be empty').isArray({
+                min: 1,
+            }),
+            check(
+                'posCorrect',
+                'Correct answer position text must be valid'
+            ).isInt({ min: 0 }),
+            check('time', 'Time must be valid').not().isEmpty(),
+            check('point', 'Point must be valid').not().isEmpty(),
+            check('image', 'Image must be valid').not().isEmpty(),
+        ],
+    ],
+    createQuestion
+);
 
 /*
   @route GET /api/v1/questions

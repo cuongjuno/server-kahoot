@@ -1,6 +1,6 @@
 const express = require('express');
 const { check } = require('express-validator');
-const { createKahoot, getKahoots, getKahootsByUserId, getKahootById } = require('../handlers/kahoot');
+const { createKahoot, getKahoots, getKahootsByUserId, getKahootById, deleteKahootById } = require('../handlers/kahoot');
 const router = express.Router();
 const { authMiddleware } = require('../middlewares/authMiddleware');
 
@@ -38,5 +38,13 @@ router.get('/user/:userId', getKahootsByUserId);
   @access Public
 */
 router.get('/:id', getKahootById);
+
+/*
+  @route Delete /api/v1/kahoot/:id
+  @desc delete kahoot by id
+  @access private
+*/
+
+router.delete('/:id',authMiddleware, deleteKahootById)
 
 module.exports = router;

@@ -12,7 +12,7 @@ router.post('/signup', [
   check('username', 'User name must not be empty').not().isEmpty(),
   check('email', 'Email must be valid').isEmail(),
   check('password', 'Password must be at least 6 characters').isLength({ min: 6 }),
-  check('age', 'Age must be valid').isInt({ min: 1 })
+  check('dob', 'Date of birth must be valid').isString()
 ], signup);
 
 /*

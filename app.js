@@ -115,6 +115,12 @@ io.on('connection', function (socket) {
             score: data.score,
         });
     });
+    socket.on('rank', (data) => {
+        console.log('rank' + data.rank);
+        io.to(data.id).emit('rank', {
+            rank: data.rank,
+        });
+    });
     return io;
 });
 
